@@ -1,16 +1,34 @@
-# React + Vite
+# Task Manager Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Applicazione **Task Manager** sviluppata in **React** come progetto didattico avanzato per consolidare i concetti fondamentali del frontend moderno e dimostrare una struttura di codice pulita e scalabile.
 
-Currently, two official plugins are available:
+Il progetto permette di gestire una lista di task con operazioni complete di CRUD lato frontend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Funzionalità principali
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ✅ Visualizzazione lista task
+- ➕ Aggiunta di una nuova task tramite form
+- ❌ Eliminazione di una task
+- 🔄 Cambio stato task (`todo → doing → done`)
+- 🔍 Filtro task per stato
+- 🎨 Stato visivo delle task gestito via CSS
+- 🚫 Bottone di submit disabilitato se input vuoto
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧠 Concetti chiave dimostrati
+
+- **State management** con `useState`
+- **Lifting state up**
+- **Flusso dei dati unidirezionale**
+- **Props e callback**
+- **Componenti presentazionali vs logici**
+- **Immutabilità dello stato**
+- **Input controllati**
+- **Dati derivati (filteredTasks)**
+- **Separazione logica / UI / styling**
+
+---
+
