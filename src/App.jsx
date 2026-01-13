@@ -64,22 +64,51 @@ export default function App() {
   }
 
   // Funzione per eliminare una task tramite id
-  function handleDeleteTask(taskId) {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  async function handleDeleteTask(taskId) {
+    try {
+      const res = await fetch(`${API_URL}/${taskId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        throw new Error("Errore nel'eliminazione della task");
+      }
+
+      // Aggiorno lo state rimuovendo la task eliminata
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   // Funzione per gestire il cambio stato di una task
-  function handleChangeStatus(taskId) {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId
-          ? {
-              ...task, // Copio la task originale
-              status: task.status === "todo" ? "doing" : task.status === "doing" ? "done" : "todo", // Cambio lo status
-            }
-          : task
-      )
-    );
+  async function handleChangeStatus(taskId) {
+    // Recupero la task corrente
+    const currentTask = tasks.find((task) => task.id === taskId);
+
+    if (currentTask) return;
+
+    // Calcolo il prossimo stato
+    const nextStatus = currentTask.status === "todo" ? "doing" : currentTask.status === "doing" ? "done" : "todo";
+
+    try {
+      const res = await fetch(`${API_URL}/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: nextStatus }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Errore nell'aggiornamento della task");
+      }
+
+      // Aggiorno lo state sostituendo la task aggiornata
+      setTasks((prev) => prev.map((task) => (task.id === taskId ? updateTask : task)));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   // Creo i filtri per separare le task in base allo stato(No state, dato derivato)
