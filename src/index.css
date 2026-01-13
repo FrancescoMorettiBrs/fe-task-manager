@@ -9,11 +9,16 @@
 }
 
 .task-title.doing {
-  color: #0d6efd; 
+  color: #0d6efd;
 }
 
 .task-title.done {
-  color: #198754; 
+  color: #198754;
   text-decoration: line-through;
   opacity: 0.7;
+}
+
+.error {
+  color: #ff0000;
+  font-weight: bold;
 }
