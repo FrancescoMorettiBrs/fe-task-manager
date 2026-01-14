@@ -76,6 +76,7 @@ export default function App() {
   }
 
   // Creo i filtri per separare le task in base allo stato(No state, dato derivato)
+  const filters = ["all", "todo", "doing", "done"];
   const filteredTasks = tasks.filter((task) => {
     if (filterStatus === "all") return true;
     return task.status === filterStatus;
@@ -90,25 +91,33 @@ export default function App() {
   }
 
   return (
-    <div>
-      <h1>Task Manager</h1>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-lg-6">
+          <div card shadow-sm>
+            <div className="card-body">
+              <div className="mb-4 text-center">
+                <h1 className="h3 mb-1">Task Manager</h1>
+                <p className="text-muted mb-0">Gestisci le tue attività quotidiane</p>
 
-      <AddTaskForm value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} onSubmit={handleAddTask} />
-      <div className="btn-group mb-3">
-        <button className={`btn btn-outline-primary ${filterStatus === "all" ? "active" : ""}`} onClick={() => setFilterStatus("all")}>
-          All
-        </button>
-        <button className={`btn btn-outline-primary ${filterStatus === "todo" ? "active" : ""}`} onClick={() => setFilterStatus("todo")}>
-          Todo
-        </button>
-        <button className={`btn btn-outline-primary ${filterStatus === "doing" ? "active" : ""}`} onClick={() => setFilterStatus("doing")}>
-          Doing
-        </button>
-        <button className={`btn btn-outline-primary ${filterStatus === "done" ? "active" : ""}`} onClick={() => setFilterStatus("done")}>
-          Done
-        </button>
+                <AddTaskForm value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} onSubmit={handleAddTask} />
+                <div className="btn-group w-100 mb-4">
+                  {filters.map((status) => (
+                    <button key={status} className={`btn btn-outline-primary ${filterStatus === status ? "active" : ""}`} onClick={() => setFilterStatus(status)}>
+                      {status.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+                {filteredTasks.length === 0 ? (
+                  <p className="text-center text-muted mt-3">Nessuna task presente</p>
+                ) : (
+                  <TaskList tasks={filteredTasks} onDeleteTask={handleDeleteTask} onToggleStatus={handleChangeStatus} />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <TaskList tasks={filteredTasks} onDeleteTask={handleDeleteTask} onToggleStatus={handleChangeStatus} />
     </div>
   );
 }

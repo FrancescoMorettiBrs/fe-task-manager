@@ -10,6 +10,7 @@
 
 .task-title.doing {
   color: #0d6efd;
+  font-weight: 500;
 }
 
 .task-title.done {
