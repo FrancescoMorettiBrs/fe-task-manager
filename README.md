@@ -1,34 +1,67 @@
-# Task Manager Pro
+Task Manager Pro:
 
-Applicazione **Task Manager** sviluppata in **React** come progetto didattico avanzato per consolidare i concetti fondamentali del frontend moderno e dimostrare una struttura di codice pulita e scalabile.
+Applicazione Task Manager Full Stack sviluppata con React per il frontend e Node.js / Express / MySQL per il backend.
+Il progetto è nato come esercizio frontend ed è stato progressivamente evoluto in un’applicazione completa con API REST e persistenza su database.
 
-Il progetto permette di gestire una lista di task con operazioni complete di CRUD lato frontend.
+L’obiettivo è dimostrare buone pratiche di sviluppo, una struttura scalabile e un flusso di lavoro realistico frontend ↔ backend.
 
----
+🚀 Funzionalità principali:
 
-## 🚀 Funzionalità principali
+📋 Visualizzazione lista task da database
+➕ Creazione di nuove task tramite form
+❌ Eliminazione di una task
+🔄 Aggiornamento stato task (todo → doing → done)
+🔍 Filtro task per stato
+💾 Persistenza dati su database MySQL
+🎨 Stato visivo delle task gestito via CSS e Bootstrap
+⏳ Gestione loading ed error state
 
-- ✅ Visualizzazione lista task
-- ➕ Aggiunta di una nuova task tramite form
-- ❌ Eliminazione di una task
-- 🔄 Cambio stato task (`todo → doing → done`)
-- 🔍 Filtro task per stato
-- 🎨 Stato visivo delle task gestito via CSS
-- 🚫 Bottone di submit disabilitato se input vuoto
+🧱 Architettura del progetto:
 
----
+/////// Frontend:
 
-## 🧠 Concetti chiave dimostrati
+React
+JavaScript (ES6)
+Bootstrap
+Componenti riutilizzabili
+Stato centralizzato in App.jsx
+Separazione tra:
+    UI
+    logica applicativa
+    layer API
 
-- **State management** con `useState`
-- **Lifting state up**
-- **Flusso dei dati unidirezionale**
-- **Props e callback**
-- **Componenti presentazionali vs logici**
-- **Immutabilità dello stato**
-- **Input controllati**
-- **Dati derivati (filteredTasks)**
-- **Separazione logica / UI / styling**
+/////// Backend:
 
----
+Node.js
+Express
+MySQL
+API REST
+Struttura a livelli:
+    routes
+    controllers
+    database
+    middlewares (error handling e not found)
 
+🔗 Comunicazione Frontend ↔ Backend
+
+Il frontend comunica con il backend tramite API REST:
+
+GET /tasks → recupero task
+POST /tasks → creazione task
+PUT /tasks/:id → aggiornamento stato
+DELETE /tasks/:id → eliminazione task
+La logica di comunicazione HTTP è centralizzata in un API layer dedicato, mantenendo i componenti React focalizzati sulla UI.
+
+🧠 Concetti chiave dimostrati
+
+State management con useState
+Side effects con useEffect
+Lifting state up
+Flusso dei dati unidirezionale
+Props e callback
+Immutabilità dello stato
+Input controllati
+Dati derivati (filteredTasks)
+Rendering condizionale (loading / error / empty state)
+Separazione delle responsabilità
+Refactoring progressivo e pulizia del codice
